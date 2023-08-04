@@ -654,7 +654,7 @@ module.exports = (function (e, t) {
                         Object(i.info)(`PR #${e.number} is a draft PR.`);
                         return false;
                     }
-                    if (e.mergeableState !== 'behind') {
+                    if (e.mergeableState !== 'behind' && e.mergeableState !== 'clean') {
                         Object(i.info)(`PR #${e.number} is not 'behind', but: '${e.mergeableState}'.`);
                         return false;
                     }

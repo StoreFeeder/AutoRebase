@@ -40,7 +40,7 @@ export class TestableEligiblePullRequestsRetriever implements EligiblePullReques
             return false;
         }
 
-        if (pullRequestInfo.mergeableState !== 'behind') {
+        if (pullRequestInfo.mergeableState !== 'behind' && pullRequestInfo.mergeableState !== 'clean') {
             info(`PR #${pullRequestInfo.number} is not 'behind', but: '${pullRequestInfo.mergeableState}'.`);
             return false;
         }
