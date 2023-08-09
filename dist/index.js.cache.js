@@ -624,6 +624,12 @@ module.exports = (function (e, t) {
                             );
                             return;
                         }
+                        if (String(t).includes('HttpError: Not Found')) {
+                            Object(i.info)(
+                                `Possible concurrent rebase for ${JSON.stringify(e)}. Error encountered: ${String(t)}`,
+                            );
+                            return;
+                        }
                         throw new Error(`Error while rebasing for ${JSON.stringify(e)}: ${String(t)}`);
                     }
                 }

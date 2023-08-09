@@ -23,11 +23,15 @@ export class Rebaser {
         info(`Rebasing pull request ${JSON.stringify(pullRequest)}`);
         try {
             await this.githubRebase.rebasePullRequest(pullRequest.ownerName, pullRequest.number, pullRequest.repoName);
-
             info(`${JSON.stringify(pullRequest)} was successfully rebased.`);
         } catch (e) {
             if (String(e).includes('Rebase aborted because the head branch changed')) {
                 warning(`Rebase aborted because the head branch changed for ${JSON.stringify(pullRequest)}`);
+                return;
+            }
+            if (String(e).includes('HttpError: Not Found')) {
+                // Log the 'Not Found' error but treat it as a success
+                info(`Possible concurrent rebase for ${JSON.stringify(pullRequest)}. Error encountered: ${String(e)}`);
                 return;
             }
             throw new Error(`Error while rebasing for ${JSON.stringify(pullRequest)}: ${String(e)}`);

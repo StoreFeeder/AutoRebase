@@ -61,3 +61,13 @@ We recommend the following strategy when doing this:
 ## Attribution
 
 AutoRebase is heavily inspired by [tibdex/autosquash](https://github.com/tibdex/autosquash) and [tibdex/autorebase](https://github.com/tibdex/autosquash).
+
+# StoreFeeder deployment
+
+To deploy run the following making sure to increase to version number.
+
+`npm run build`
+
+`git tag -a v1.0.0 -m "My first action release"`
+
+`git push --follow-tags`
